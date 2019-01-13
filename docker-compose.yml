@@ -1,0 +1,22 @@
+version: '3'
+services:
+    php:
+        build: docker/php
+        container_name: aphpache
+        ports:
+            - "4444:80"
+        working_dir: /var/www/html/
+        volumes:
+            - "./www:/var/www/html/"
+    mysql:
+        image: mariadb:10
+        container_name: mysql
+        ports:
+            - '4445:3306'
+        volumes:
+            - "./docker/mysql/dump/:/docker-entrypoint-initdb.d"
+        environment:
+            - MYSQL_DATABASE=poe
+            - MYSQL_ROOT_PASSWORD=root
+            - MYSQL_USER=poe
+            - MYSQL_PASSWORD=password
