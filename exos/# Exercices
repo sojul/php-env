@@ -1,0 +1,9 @@
+# Exercices
+
+## Exo #1
+
+A partir du fichier `employees.csv` :
+
+1. Générer un nouveau CSV sans doublons, en n'incluant que les personnes dont on connait le prénom ET le nom.
+2. Compter le nombre d'employés à Bordeaux
+3. Calculer l'âge moyen des employés
