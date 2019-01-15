@@ -5,7 +5,6 @@
 
 namespace CleverAge\Formation\Model;
 
-
 abstract class Entity
 {
 
@@ -21,7 +20,6 @@ abstract class Entity
       }
     }
   }
-
 
   protected function underscoreToCamelCase($string, $capitalizeFirstCharacter = false) {
     $str = str_replace('_', '', ucwords($string, '_'));

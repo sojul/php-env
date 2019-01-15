@@ -22,6 +22,9 @@ Elle devra permettre de logguer un message en base de donnée dans la table `log
 
 2. Dans le fichier `exo-2.php`, instancier et appeler cette nouvelle classe et logguer un message à chaque visite.
 
-3. Modifier la classe `Trainee` pour qu'elle étende la classe `Entity`. Adapter le constructeur en fonction.
+## Exo #3
 
-4. Dans le fichier `exo-2.php` créer deux nouveaux objets `Trainee` et modifier / appeler la méthode `TraineeRepository::insert()` pour les insérer en base. Retourner l'ID généré par MySQL.
+1. Modifier la classe `Trainee` pour qu'elle étende la classe `Entity`. Adapter le constructeur en fonction.
+
+2. Dans le fichier `exo-3.php` créer deux nouveaux objets `Trainee` et modifier / appeler la méthode `TraineeRepository::add()` pour les insérer en base.
+  Stocker l'ID généré dans les objets `Trainee` et afficher les objets après insertion avec un `var_dump()`.
