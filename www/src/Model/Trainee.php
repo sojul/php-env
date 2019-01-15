@@ -85,7 +85,7 @@ class Trainee
       $this->firstName = $firstName;
     }
     else {
-      //            throw new FistNameException();
+      // throw new FistNameException();
     }
   }
 

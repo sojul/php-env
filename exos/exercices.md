@@ -20,4 +20,8 @@ A partir du fichier `employees.csv` :
 1. Créer une classe `CleverAge\Formation\Logger\DbLogger` respectant l'interface `LogInterface`.
 Elle devra permettre de logguer un message en base de donnée dans la table `logs` avec un timestamp.
 
-2. Modifier la classe `Trainee` pour qu'elle étende la classe `Entity`. Adapter le constructeur en fonction.
+2. Dans le fichier `exo-2.php`, instancier et appeler cette nouvelle classe et logguer un message à chaque visite.
+
+3. Modifier la classe `Trainee` pour qu'elle étende la classe `Entity`. Adapter le constructeur en fonction.
+
+4. Dans le fichier `exo-2.php` créer deux nouveaux objets `Trainee` et modifier / appeler la méthode `TraineeRepository::insert()` pour les insérer en base. Retourner l'ID généré par MySQL.
