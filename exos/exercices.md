@@ -13,3 +13,11 @@ A partir du fichier `employees.csv` :
   * Ville
   * Nom en majuscules + prénom (ex: 'KRUPPA Julien')
   * Age
+
+
+## Exo #2
+
+1. Créer une classe `CleverAge\Formation\Logger\DbLogger` respectant l'interface `LogInterface`.
+Elle devra permettre de logguer un message en base de donnée dans la table `logs` avec un timestamp.
+
+2. Modifier la classe `Trainee` pour qu'elle étende la classe `Entity`. Adapter le constructeur en fonction.

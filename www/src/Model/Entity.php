@@ -10,7 +10,7 @@ abstract class Entity
 {
 
   /**
-   * Trainee constructor.
+   * Entity constructor.
    * @param array $data
    */
   public function __construct($data = []) {
