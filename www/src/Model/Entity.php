@@ -21,6 +21,11 @@ abstract class Entity
     }
   }
 
+  /**
+   * @param $string
+   * @param bool $capitalizeFirstCharacter
+   * @return mixed|string
+   */
   protected function underscoreToCamelCase($string, $capitalizeFirstCharacter = false) {
     $str = str_replace('_', '', ucwords($string, '_'));
     if (!$capitalizeFirstCharacter) {

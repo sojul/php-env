@@ -48,7 +48,21 @@ class TraineeRepository
   }
 
   public function add(Trainee $trainee) {
+    $statement = $this->db->prepare('
+      INSERT INTO trainee
+      SET first_name = :first_name,
+          last_name = :last_name,
+          age = :age,
+          date_of_birth = :date_of_birth
+    ');
+    $statement->execute([
+      ':first_name' => $trainee->getFirstName(),
+      ':last_name' => $trainee->getLastName(),
+      ':age' => $trainee->getAge(),
+      ':date_of_birth' => $trainee->getDateOfBirth()->format('Y-m-d'),
+    ]);
 
+    $trainee->setId($this->db->lastInsertId());
   }
 
   public function delete(Trainee $trainee) {

@@ -2,13 +2,14 @@
 
 namespace CleverAge\Formation\Model;
 
+use CleverAge\Formation\Logger\LogInterface;
 use DateTime;
 
 /**
  * Mon commentaire
  *
  */
-class Trainee
+class Trainee extends Entity
 {
 
   CONST MAX_LENGTH = 45;
@@ -38,22 +39,6 @@ class Trainee
    * @var DateTime
    */
   protected $dateOfBirth;
-
-  /**
-   * Trainee constructor.
-   * @param $id int
-   * @param $firstName
-   * @param $lastName
-   * @param DateTime $dateOfBirth
-   * @throws Exception
-   * @throws FistNameException
-   */
-  public function __construct($id, $firstName, $lastName, string $dateOfBirth = null) {
-    $this->id = $id;
-    $this->setFirstName($firstName);
-    $this->setLastName($lastName);
-    $this->setDateOfBirth($dateOfBirth);
-  }
 
   /**
    * @return int
