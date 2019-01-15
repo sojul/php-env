@@ -11,4 +11,7 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" &&
 
 RUN docker-php-ext-install pdo pdo_mysql
 
+RUN pecl install xdebug-2.6.0 && \
+    docker-php-ext-enable xdebug
+
 WORKDIR /var/www/html/

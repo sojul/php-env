@@ -12,57 +12,50 @@ use PDO;
 
 class TraineeRepository
 {
-    /**
-     * @var DatabaseConnection $db
-     */
-    private $db;
+  /**
+   * @var DatabaseConnection $db
+   */
+  private $db;
 
-    /**
-     * TraineeManager constructor.
-     * @param DatabaseConnection $db
-     */
-    public function __construct(DatabaseConnection $db)
-    {
-        $this->db = $db;
+  /**
+   * TraineeManager constructor.
+   * @param DatabaseConnection $db
+   */
+  public function __construct(DatabaseConnection $db) {
+    $this->db = $db;
+  }
+
+  public function findAll(): array {
+    $array = [];
+    $query = $this->db->query('SELECT * FROM trainee');
+    $trainees = $query->fetchAll(PDO::FETCH_ASSOC);
+
+    foreach ($trainees as $trainee) {
+      $tmp = new Trainee($trainee['id'], $trainee['first_name'], $trainee['last_name'], $trainee['date_of_birth']);
+      $array[] = $tmp;
     }
 
-    public function findAll(): array
-    {
-        $array = [];
-        $query = $this->db->query('SELECT * FROM trainee');
-        $trainees = $query->fetchAll(PDO::FETCH_ASSOC);
+    return $array;
+  }
 
-        foreach ($trainees as $trainee)
-        {
-            $tmp = new Trainee($trainee);
-            $array[] = $tmp;
-        }
+  public function findOne($id) {
+    $id = (int)$id;
 
-        return $array;
-    }
+    $q = $this->db->query('SELECT * FROM trainee WHERE  id = ' . $id);
+    $data = $q->fetch(PDO::FETCH_ASSOC);
 
-    public function findOne($id)
-    {
-        $id = (int)$id;
+    return new Trainee($data);
+  }
 
-        $q = $this->db->query('SELECT * FROM trainee WHERE  id = ' . $id);
-        $data = $q->fetch(PDO::FETCH_ASSOC);
+  public function add(Trainee $trainee) {
 
-        return new Trainee($data);
-    }
+  }
 
-    public function add(Trainee $trainee)
-    {
+  public function delete(Trainee $trainee) {
 
-    }
+  }
 
-    public function delete(Trainee $trainee)
-    {
+  public function update(Trainee $trainee) {
 
-    }
-
-    public function update(Trainee $trainee)
-    {
-
-    }
+  }
 }

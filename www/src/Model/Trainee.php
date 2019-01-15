@@ -2,163 +2,159 @@
 
 namespace CleverAge\Formation\Model;
 
-use CleverAge\Formation\Exception\FistNameException;
 use DateTime;
 
 /**
  * Mon commentaire
  *
  */
-class Trainee extends Entity
+class Trainee
 {
 
-    CONST MAX_LENGTH = 45;
+  CONST MAX_LENGTH = 45;
 
-    /**
-     * @var int id
-     */
-    private $id;
+  /**
+   * @var int id
+   */
+  protected $id;
 
-    /**
-     * @var string
-     */
-    private $firstName;
-
-
-    /**
-     * @var string
-     */
-    private $lastName;
-
-    /**
-     * @var int
-     */
-    private $age;
-
-    /**
-     * @var DateTime
-     */
-    private $dateOfBirth;
+  /**
+   * @var string
+   */
+  protected $firstName;
 
 
+  /**
+   * @var string
+   */
+  protected $lastName;
 
-    /**
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->id;
+  /**
+   * @var int
+   */
+  protected $age;
+
+  /**
+   * @var DateTime
+   */
+  protected $dateOfBirth;
+
+  /**
+   * Trainee constructor.
+   * @param $id int
+   * @param $firstName
+   * @param $lastName
+   * @param DateTime $dateOfBirth
+   * @throws Exception
+   * @throws FistNameException
+   */
+  public function __construct($id, $firstName, $lastName, string $dateOfBirth = null) {
+    $this->id = $id;
+    $this->setFirstName($firstName);
+    $this->setLastName($lastName);
+    $this->setDateOfBirth($dateOfBirth);
+  }
+
+  /**
+   * @return int
+   */
+  public function getId(): int {
+    return $this->id;
+  }
+
+  /**
+   * @param int $id
+   */
+  public function setId(int $id): void {
+    $this->id = $id;
+  }
+
+  /**
+   * @return string
+   */
+  public function getFirstName(): string {
+    return $this->firstName;
+  }
+
+  /**
+   * @param string $firstName
+   * @throws FistNameException
+   */
+  public function setFirstName(string $firstName): void {
+    if ($this->checkLength($firstName)) {
+      $this->firstName = $firstName;
     }
-
-    /**
-     * @param int $id
-     */
-    public function setId(int $id): void
-    {
-        $this->id = $id;
+    else {
+      //            throw new FistNameException();
     }
+  }
 
-    /**
-     * @return string
-     */
-    public function getFirstName(): string
-    {
-        return $this->firstName;
+  /**
+   * @return string
+   */
+  public function getLastName(): string {
+    return $this->lastName;
+  }
+
+  /**
+   * @param string $lastName
+   * @throws Exception
+   */
+  public function setLastName(string $lastName): void {
+    if ($this->checkLength($lastName) == true) {
+      $this->lastName = $lastName;
     }
-
-    /**
-     * @param string $firstName
-     */
-    public function setFirstName(string $firstName): void
-    {
-        if ($this->checkLengh($firstName)) {
-            $this->firstName = $firstName;
-        } else {
-//            throw new FistNameException();
-        }
+    else {
+      // throw new Exception('ERREUR: le parametre est trop grand');
     }
+  }
 
-    /**
-     * @return string
-     */
-    public function getLastName(): string
-    {
-        return $this->lastName;
+  /**
+   * @return int
+   */
+  public function getAge(): int {
+    return $this->age;
+  }
+
+  /**
+   * @return DateTime
+   */
+  public function getDateOfBirth(): DateTime {
+    return $this->dateOfBirth;
+  }
+
+  /**
+   * @param string $dateOfBirth
+   */
+  public function setDateOfBirth($dateOfBirth) {
+    if (empty($dateOfBirth)) {
+      $this->dateOfBirth = null;
+      $this->age = null;
     }
-
-    /**
-     * @param string $lastName
-     * @throws Exception
-     */
-    public function setLastName(string $lastName): void
-    {
-        if ($this->checkLengh($lastName) == true) {
-            $this->lastName = $lastName;
-        } else {
-//            throw new Exception('ERREUR: le parametre est trop grand');
-        }
+    else {
+      $dateOfBirth = DateTime::createFromFormat('Y-m-d', $dateOfBirth);
+      if ($dateOfBirth > new DateTime()) {
+        echo 'erreur';
+      }
+      else {
+        $this->dateOfBirth = $dateOfBirth;
+        $this->age = $this->calculeAge($this->dateOfBirth);
+      }
     }
-
-    /**
-     * @return int
-     */
-    public function getAge(): int
-    {
-        return $this->age;
-    }
-
-    /**
-     * @return DateTime
-     */
-    public function getDateOfBirth(): DateTime
-    {
-        return $this->dateOfBirth;
-    }
-
-    /**
-     * @param string $dateOfBirth
-     */
-    public function setDateOfBirth(string $dateOfBirth = null)
-    {
-        if(empty($dateOfBirth)) {
-            $this->dateOfBirth = null;
-            $this->age = null;
-        } else {
-            $dateOfBirth = DateTime::createFromFormat('Y-m-d', $dateOfBirth);
-            if ($dateOfBirth > new DateTime()) {
-                echo 'erreur';
-            } else {
-                $this->dateOfBirth = $dateOfBirth;
-                $this->age = $this->calculeAge($this->dateOfBirth);
-            }
-        }
-    }
-
-    private function checkLengh($string, $maxLength = self::MAX_LENGTH)
-    {
-        return strlen($string) <= $maxLength;
-    }
-
-    /**
-     * @param DateTime $dateOfBirth
-     * @return string
-     */
-    private function calculeAge(DateTime $dateOfBirth): string
-    {
-        $now = (new DateTime())->format('Y');
-        return $now - $dateOfBirth->format('Y');
-    }
-
-    public function __toString()
-    {
-        $str = "Je suis $this->firstName $this->lastName";
-        if(!empty($this->dateOfBirth))
-        {
-            $date = $this->dateOfBirth->format('d/m/Y');
-            $str += ", je suis né(e) le $date";
-        }
-        return $str . '<br>';
-    }
+  }
 
 
+  private function checkLength($string, $maxLength = self::MAX_LENGTH) {
+    return strlen($string) < $maxLength;
+  }
+
+
+  /**
+   * @param DateTime $dateOfBirth
+   * @return string
+   */
+  private function calculeAge(DateTime $dateOfBirth): string {
+    $now = (new DateTime())->format('Y');
+    return $now - $dateOfBirth->format('Y');
+  }
 }

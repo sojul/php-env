@@ -2,9 +2,6 @@
 
 namespace CleverAge\Formation\Exception;
 
-use Exception;
-use DateTime;
-
 /**
  * Class FistNameException
  *
@@ -13,7 +10,7 @@ use DateTime;
  * @category
  * @license
  */
-class FistNameException extends Exception {
+class FistNameException extends \Exception {
 
     protected $date;
 
