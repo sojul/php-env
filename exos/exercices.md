@@ -41,7 +41,8 @@ Elle devra permettre de logguer un message en base de donnée dans la table `log
    
    Au dessus de cette liste, ajouter un lien vers le formulaire d'ajout.
    
-4. Créer une page `update.php` qui permet de modifier un stagiaire :  
+4. Créer une page `update.php` qui permet de modifier un stagiaire :
+   * Dans la liste des stagiaires, ajouter sur chaque ligne un lien "Modifier"  
    * Afficher un formulaire pré-rempli avec les valeurs du stagiaire à modifier
    * Rediriger vers la liste après modification
 
