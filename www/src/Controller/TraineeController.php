@@ -18,7 +18,7 @@ class TraineeController extends ControllerBase {
     $trainee_repository = new TraineeRepository($this->db);
     $trainees = $trainee_repository->findAll();
 
-    echo $this->engine->render('trainee-list.html.php', [
+    return $this->engine->render('trainee-list.html.php', [
       'trainees' => $trainees
     ]);
   }
@@ -27,8 +27,8 @@ class TraineeController extends ControllerBase {
    * Display form and add a new Trainee
    */
   public function add() {
-    $message = '';
 
+    // Handle form data if it has been submitted.
     if (!empty($_POST)) {
       if (!empty($_POST['first_name']) && !empty($_POST['last_name']) && !empty($_POST['date_of_birth'])) {
         $trainee = new Trainee([
@@ -40,15 +40,13 @@ class TraineeController extends ControllerBase {
         $trainee_repository = new TraineeRepository($this->db);
         $trainee_repository->add($trainee);
 
-        $message = "Le stagiaire #{$trainee->getId()} a été créé";
+        $this->message_bag->addMessage("Le stagiaire #{$trainee->getId()} a été créé");
 
         $this->redirectTo('/trainee/list');
       }
     }
 
-    return $this->engine->render('trainee-add.html.php', [
-      'message' => $message,
-    ]);
+    return $this->engine->render('trainee-add.html.php');
   }
 
   /**
@@ -66,25 +64,27 @@ class TraineeController extends ControllerBase {
       return "Erreur: l'élément à modifier n'existe pas";
     }
 
-    $message = '';
-
     if (!empty($_POST)) {
       $trainee->setFirstName($_POST['first_name']);
       $trainee->setLastName($_POST['last_name']);
       $trainee->setDateOfBirth($_POST['date_of_birth']);
 
       $trainee_repository = new TraineeRepository($this->db);
-      $trainee_repository->add($trainee);
+      $trainee_repository->update($trainee);
 
-      $message = "Le stagiaire #{$trainee->getId()} a été modifié";
+      $this->message_bag->addMessage("Le stagiaire #{$trainee->getId()} a été modifié");
+
+      $this->redirectTo('/trainee/list');
     }
 
     return $this->engine->render('trainee-update.html.php', [
-      'message' => $message,
       'trainee' => $trainee,
     ]);
   }
 
+  /**
+   * @return string
+   */
   public function delete() {
     if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
       return "Erreur: l'élément à modifier n'est pas valide";

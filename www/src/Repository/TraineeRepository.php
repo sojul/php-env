@@ -71,7 +71,7 @@ class TraineeRepository
       ':first_name' => $trainee->getFirstName(),
       ':last_name' => $trainee->getLastName(),
       ':age' => $trainee->getAge(),
-      ':date_of_birth' => $trainee->getDateOfBirth()->format('Y-m-d'),
+      ':date_of_birth' => $trainee->getFormattedDateOfBirth(),
     ]);
 
     $trainee->setId($this->db->lastInsertId());
