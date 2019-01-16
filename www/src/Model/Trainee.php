@@ -97,15 +97,24 @@ class Trainee extends Entity
   /**
    * @return int
    */
-  public function getAge(): int {
+  public function getAge(): ?int {
     return $this->age;
   }
 
   /**
    * @return DateTime
    */
-  public function getDateOfBirth(): DateTime {
+  public function getDateOfBirth(): ?DateTime {
     return $this->dateOfBirth;
+  }
+
+  /**
+   * Return formatted date of birth (Y-m-d) or an empty string.
+   *
+   * @return string
+   */
+  public function getFormattedDateOfBirth() {
+    return $this->dateOfBirth instanceof DateTime ? $this->dateOfBirth->format('Y-m-d') : '';
   }
 
   /**

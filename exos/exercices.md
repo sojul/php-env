@@ -34,3 +34,17 @@ Elle devra permettre de logguer un message en base de donnée dans la table `log
 1. Modifier le fichier `exo4.php` pour utiliser le formulaire et permettre d'ajouter de nouveaux stagiaires.
 
 2. Créer un nouveau fichier `list.php` qui permettra d'afficher sous forme de tableau la liste des stagiaires.
+
+3. Renommer le fichier `exo4.php` en `add.php`.
+
+   Après l'ajout d'un stagiaire (depuis `add.php`), rediriger l'utilisateur vers la liste des stagiaires.
+   
+   Au dessus de cette liste, ajouter un lien vers le formulaire d'ajout.
+   
+4. Créer une page `update.php` qui permet de modifier un stagiaire :  
+   * Afficher un formulaire pré-rempli avec les valeurs du stagiaire à modifier
+   * Rediriger vers la liste après modification
+
+## Exo #5
+
+Sessions 
