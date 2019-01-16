@@ -2,10 +2,9 @@
 
 require_once __DIR__ . '/autoload.php';
 
-use CleverAge\Formation\Logger\DbLogger;
-use CleverAge\Formation\Model\Trainee;
 use CleverAge\Formation\Utils\Database\DatabaseConfiguration;
 use CleverAge\Formation\Utils\Database\DatabaseConnection;
+use CleverAge\Formation\View\PhpTemplateEngine;
 
 $config = new DatabaseConfiguration(
 'mysql',
@@ -15,3 +14,5 @@ $config = new DatabaseConfiguration(
 'password'
 );
 $db = new DatabaseConnection($config);
+
+$engine = new PhpTemplateEngine(__DIR__ . '/views');

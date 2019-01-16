@@ -30,8 +30,9 @@ class TraineeRepository
     $query = $this->db->query('SELECT * FROM trainee');
     $trainees = $query->fetchAll(PDO::FETCH_ASSOC);
 
-    foreach ($trainees as $trainee) {
-      $tmp = new Trainee($trainee['id'], $trainee['first_name'], $trainee['last_name'], $trainee['date_of_birth']);
+    foreach ($trainees as $index => $trainee) {
+      // @TODO: Refactor Trainee use.
+      $tmp = new Trainee($trainee);
       $array[] = $tmp;
     }
 
