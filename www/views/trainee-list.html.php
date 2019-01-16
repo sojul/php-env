@@ -1,7 +1,7 @@
 <html>
   <body>
     <h1>Liste des stagiaires</h1>
-    <a href="/exo4.php">Ajouter un stagiaire</a>
+    <a href="/trainee/add">Ajouter un stagiaire</a>
     <table>
       <?php foreach ($trainees as $trainee): ?>
         <tr>
@@ -19,6 +19,10 @@
           </td>
           <td>
             <?php echo $trainee->getFormattedDateOfBirth(); ?>
+          </td>
+          <td>
+            <a href="/trainee/update?id=<?php echo $trainee->getId(); ?>">Modifier</a>
+            <a href="/trainee/delete?id=<?php echo $trainee->getId(); ?>">Supprimer</a>
           </td>
         </tr>
       <?php endforeach; ?>

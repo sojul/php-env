@@ -2,6 +2,8 @@ FROM php:7.1-apache
 
 RUN apt-get update && apt-get install -y git zip unzip
 
+RUN a2enmod rewrite
+
 COPY php.ini /usr/local/etc/php/
 
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
