@@ -28,3 +28,9 @@ Elle devra permettre de logguer un message en base de donnée dans la table `log
 
 2. Dans le fichier `exo-3.php` créer deux nouveaux objets `Trainee` et modifier / appeler la méthode `TraineeRepository::add()` pour les insérer en base.
   Stocker l'ID généré dans les objets `Trainee` et afficher les objets après insertion avec un `var_dump()`.
+
+## Exo #4
+
+1. Modifier le fichier `exo4.php` pour utiliser le formulaire et permettre d'ajouter de nouveaux stagiaires.
+
+2. Créer un nouveau fichier `list.php` qui permettra d'afficher sous forme de tableau la liste des stagiaires.

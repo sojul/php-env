@@ -1,6 +1,6 @@
 <html>
 <body>
-<form method="get">
+<form method="post">
   <p>
     <label for="first_name">Prénom</label>
     <input type="text" id="first_name" name="first_name" />
