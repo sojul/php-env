@@ -59,3 +59,43 @@ Try / Catch : La suppression de certains stagiaires renvoie une Fatal Error de M
 
 2. Envoyer un mail au format HTML reprenant les informations du stagiaire.
    Indice: Utiliser le template engine pour générer le HTML 
+
+3. Créer une classe `\CleverAge\Formation\Utils\Mail qui devra permettre de nous simplifier l'envoi de mail.
+   Cette classe nous servira de couche d'abstraction avec SwiftMailer.
+   Elle devra avoir les méthodes publiques suivantes (en reprenant le même type de paramètres qu'attendus par `SwiftMessage`):
+   ```
+   
+     ->setSubject(string);
+     ->setFrom(array);
+     ->setTo(array);
+     ->sendFromTemplate($template_name, $parameters)
+   ```
+   
+   La finalité est d'y "cacher" la gestion des différentes classes de SwiftMailer pour en simplifier l'usage. Le SMTP y sera directement défini "en dur".
+   
+   On devrait pouvoir envoyer des mails avec un code de la sorte :
+   
+   ```
+   // On est obligés de fournir $engine pour gérer les templates
+   $mail = new \CleverAge\Formation\Utils\Mail($engine);
+   $mail->setSubject('Nouvel utilisateur');
+   $mail->setFrom(['mon_mail@gmail.com', Mon Mail]);
+   $mail->setTo(['jkruppa@clever-age.com', 'Julien Kruppa']);
+   $mail->sendFromTemplate('mon-template.html.php', $trainee)
+   ``` 
+   
+4. Comment réussir à chaîner les méthodes comme le fait `Swift_Message` ?
+
+   Objectif:
+   
+   ```
+   $mail = new \CleverAge\Formation\Utils\Mail($engine);
+   
+   $mail->setSubject('Nouvel utilisateur');
+     ->setFrom(['mon_mail@gmail.com', Mon Mail]);
+     ->setTo(['jkruppa@clever-age.com', 'Julien Kruppa']);
+     ->sendFromTemplate('mon-template.html.php', $trainee)
+   ```
+   
+   
+     
