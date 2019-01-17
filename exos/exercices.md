@@ -51,3 +51,11 @@ Elle devra permettre de logguer un message en base de donnée dans la table `log
 Try / Catch : La suppression de certains stagiaires renvoie une Fatal Error de MySQL.
 * Ne pas tenter de la corriger mais capturer l'exception et ajoueter un message d'erreur "Impossible de supprimer l'utilisateur XXX" à la liste des messages (voir MessageBag).
 * Rediriger ensuite vers la page /trainee/list.
+
+## Exo #6
+
+1. A l'ajout d'un utilisateur, utiliser la librairie SwiftMailer pour envoyer un mail "simple" à jkruppa@clever-age.com
+   Indice: Passer par le serveur SMTP `smtp.free.fr`
+
+2. Envoyer un mail au format HTML reprenant les informations du stagiaire.
+   Indice: Utiliser le template engine pour générer le HTML 
