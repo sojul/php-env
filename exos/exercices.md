@@ -49,4 +49,5 @@ Elle devra permettre de logguer un message en base de donnée dans la table `log
 ## Exo #5
 
 Try / Catch : La suppression de certains stagiaires renvoie une Fatal Error de MySQL.
-Ne pas tenter de la corriger mais capturer l'exception et afficher un message d'erreur.
+* Ne pas tenter de la corriger mais capturer l'exception et ajoueter un message d'erreur "Impossible de supprimer l'utilisateur XXX" à la liste des messages (voir MessageBag).
+* Rediriger ensuite vers la page /trainee/list.
