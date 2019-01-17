@@ -98,7 +98,13 @@ class TraineeController extends ControllerBase {
     }
 
     $trainee_repository = new TraineeRepository($this->db);
-    $trainee_repository->delete($trainee);
+
+    try {
+      $trainee_repository->delete($trainee);
+    }
+    catch (\PDOException $e) {
+      $this->message_bag->addMessage("Impossible de supprimer l'utilisateur {$trainee->getId()}");
+    }
 
     $this->redirectTo('/trainee/list');
   }

@@ -4,6 +4,7 @@ namespace CleverAge\Formation\Model;
 
 use CleverAge\Formation\Logger\LogInterface;
 use DateTime;
+use Exception;
 
 /**
  * Mon commentaire
@@ -71,6 +72,8 @@ class Trainee extends Entity
     }
     else {
       // throw new FistNameException();
+      // Ajoute un message d'erreur dans MessageBag.
+      throw new Exception('une erreur est survenue');
     }
   }
 

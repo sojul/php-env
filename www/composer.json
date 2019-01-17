@@ -1,0 +1,8 @@
+{
+    "autoload": {
+        "psr-4": {"CleverAge\\Formation\\": "src/"}
+    },
+    "require": {
+        "swiftmailer/swiftmailer": "^6.1"
+    }
+}
