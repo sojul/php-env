@@ -3,6 +3,7 @@ namespace CleverAge\Formation\Controller;
 
 use CleverAge\Formation\Model\Trainee;
 use CleverAge\Formation\Repository\TraineeRepository;
+use CleverAge\Formation\Utils\Mail;
 
 /**
  * Controller for trainees related stuff.
@@ -41,6 +42,15 @@ class TraineeController extends ControllerBase {
         $trainee_repository->add($trainee);
 
         $this->message_bag->addMessage("Le stagiaire #{$trainee->getId()} a été créé");
+
+        // Send mail.
+        $mail = new Mail($this->engine);
+        $mail->setSubject("Nouvel utilisateur #{$trainee->getId()}");
+        $mail->setFrom(['jkruppa@clever-age.com' => 'Julien Kruppa']);
+        $mail->setTo(['jkruppa@clever-age.com' => 'Julien Kruppa']);
+        $mail->sendFromTemplate('mail-add.html.php', [
+          'trainee' => $trainee
+        ]);
 
         $this->redirectTo('/trainee/list');
       }

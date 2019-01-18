@@ -81,7 +81,7 @@ Try / Catch : La suppression de certains stagiaires renvoie une Fatal Error de M
    $mail->setSubject('Nouvel utilisateur');
    $mail->setFrom(['mon_mail@gmail.com', Mon Mail]);
    $mail->setTo(['jkruppa@clever-age.com', 'Julien Kruppa']);
-   $mail->sendFromTemplate('mon-template.html.php', $trainee)
+   $mail->sendFromTemplate('mon-template.html.php', ['trainee' => $trainee]);
    ``` 
    
 4. Comment réussir à chaîner les méthodes comme le fait `Swift_Message` ?
